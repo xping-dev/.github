@@ -2,59 +2,41 @@
 
 # Xping
 
-**Stop guessing. Start knowing.**
+**Give your coding agent the test history it's missing.**
 
-Xping helps development teams build reliable test suites by automatically detecting flaky tests, analyzing test patterns, and providing actionable insights into test quality.
+Coding agents see one failing run and make the test pass: they loosen the assertion, add a retry, bump a timeout. With one data point, a flaky test and a real regression look the same.
 
-## What is Xping?
+Xping records every `dotnet test` run, including local runs that never reach CI. Pooled across your team, that history becomes a per-test confidence score with the evidence behind it, so your agent and your team can tell a flake from a real failure before anyone edits the test.
 
-Xping is a test reliability and quality platform designed for teams who care about their test suite's health. Whether you're a developer fighting flaky tests, a QA engineer managing test quality, or an engineering manager seeking visibility into test reliability, Xping gives you the data and insights you need.
+## How it works
 
-### The Problem We Solve
+1. **Record.** The SDK captures every test execution on laptops and in CI, with no changes to your tests.
+2. **Score.** Each test gets a confidence score, a reliability tier and an evidence level that says how much history stands behind the number.
+3. **Answer.** Ask from the terminal with `xping report`, read it in the portal, see it on GitHub pull requests, or let your agent ask before it touches a failing test.
 
-We've all been there:
-- Tests that pass locally but fail in CI
-- Flaky tests that waste hours of developer time
-- No visibility into which tests are actually reliable
-- Test suites that slow down instead of speed up development
+## Try it locally (free, no account)
 
-### How Xping Helps
+```bash
+dotnet add package Xping.Sdk.XUnit   # or Xping.Sdk.NUnit / Xping.Sdk.MSTest
+dotnet tool install -g Xping.Cli
+dotnet test
+xping report
+```
 
-- **Automatic Flaky Test Detection** - Identifies unreliable tests before they become a problem
-- **Test Analytics & Insights** - Detailed metrics, trends, and patterns across all your test executions
-- **Real-time Visibility** - See what's happening with your tests as they run
-- **Actionable Recommendations** - Get specific guidance on improving test quality
+Local mode shows run-by-run history, inconsistent and newly failing tests, and consistent failures from your own machine. See the [local-first quickstart](https://docs.xping.io/getting-started/local-first.html).
 
-## Getting Started
+## Xping Cloud: invite-only pilot
 
-1. **Sign up** at [app.xping.io](https://app.xping.io)
-2. **Install the SDK** for your language:
-   ```bash
-   dotnet add package Xping.Sdk.NUnit    # or Xping.Sdk.XUnit / Xping.Sdk.MSTest
-   ```
-3. **Configure your project** with just a few lines of code
-4. **Start running tests** and get insights immediately
+Confidence scores need history from more than one machine. Xping Cloud pools runs from your team, branches and CI, and adds per-test scoring, root-cause categorisation and GitHub pull-request insights.
 
-Check out our [Quick Start Guide](https://docs.xping.io/index.html#quick-start) for detailed setup instructions.
+We're onboarding a small number of .NET teams for a 3-week pilot. **[Apply for the pilot →](https://xping.io/contact?pilot=True&utm_source=github&utm_medium=org_profile)**
 
 ## Repositories
 
-- **[sdk-dotnet](https://github.com/xping-dev/sdk-dotnet)** - .NET library for integrating Xping into your test suite
+- **[sdk-dotnet](https://github.com/xping-dev/sdk-dotnet)**: .NET SDK for NUnit, xUnit and MSTest (MIT)
 
 ## Resources
 
-- **Documentation**: [docs.xping.io](https://docs.xping.io)
-- **Dashboard**: [app.xping.io](https://app.xping.io)
-- **Support**: [Create an issue](https://github.com/xping-dev/sdk-dotnet/issues)
-
-## Who Uses Xping?
-
-Xping is built for:
-- **.NET developers** who want reliable CI/CD pipelines
-- **QA engineers** managing complex test suites
-- **Engineering managers** tracking test quality metrics
-- **Teams** who believe tests should help, not hurt productivity
-
----
-
-**Ready to improve your test reliability?** Sign up at [app.xping.io](https://app.xping.io)
+- **Website:** [xping.io](https://xping.io)
+- **Documentation:** [docs.xping.io](https://docs.xping.io)
+- **Support:** [open an issue](https://github.com/xping-dev/sdk-dotnet/issues)
