@@ -1,3 +1,5 @@
+![Xping: flake or regression? Give your coding agent the test history it's missing.](https://raw.githubusercontent.com/xping-dev/.github/main/profile/xping-github-banner.png)
+
 # Xping
 
 **Stop guessing. Start knowing.**
